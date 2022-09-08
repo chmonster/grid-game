@@ -1,12 +1,13 @@
 import * as React from 'react'
 import GridLayout from "react-grid-layout"
 
+const cellStyle = { 'border': '1px solid rgba(0,255,0,0.3)' }
+
+// const MyGridCell = ({ i }) =>
+//  <div style={cellStyle} >{i}</div>
+
 const BoardGrid = () => {
-  // const layout = [
-  //   { i: "a", x: 0, y: 0, w: 1, h: 2, static: true },
-  //   { i: "b", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-  //   { i: "c", x: 4, y: 0, w: 1, h: 2 }
-  // ]
+
   const rows=4
   const columns=6
   const layout0 = Array(rows).fill(
@@ -23,10 +24,8 @@ const BoardGrid = () => {
         y: irow,
         i: String.fromCharCode(97 + irow * columns + icol)
       }
-      console.log(cell2)
       return cell2
     })
-    //console.log(row2)
     return row2
   })
 
@@ -34,9 +33,7 @@ const BoardGrid = () => {
     prev.concat(next)
   )
 
-  console.log(layout)  
-
-  const gridStyle = { 'border': '1px solid rgba(0,255,0,0.3)' }
+  
 
   return (
     <GridLayout 
@@ -46,8 +43,10 @@ const BoardGrid = () => {
       rowHeight={30}
       width={400}
     >
+
       {layout.map(cell=>(
-        <div style={gridStyle} key={cell.i} >{cell.i}</div>
+        <div style={cellStyle} key={cell.i} >{cell.i}</div>
+        
       ))}
 
     </GridLayout>
@@ -55,7 +54,6 @@ const BoardGrid = () => {
 }
 
 const App = ({ initialData }) => {
-  //const [count, setCount] = React.useState(0)
   return (
     <div>
       <BoardGrid />
